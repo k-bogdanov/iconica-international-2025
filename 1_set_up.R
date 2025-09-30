@@ -1,5 +1,6 @@
 # load libraries
 library(ggplot2)
+library(wacolors)
 library(phyloseq)
 library(dplyr)
 library(microViz)
@@ -65,3 +66,4 @@ col10 <- "#309898"
 # import phyloseq objects
 all_16s_phyloseq <- readRDS("~/iconica_all_16s_ps.rds")
 all_ITS_phyloseq <- readRDS("~/iconica_all_its_ps.rds")
+
