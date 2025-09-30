@@ -37,7 +37,7 @@ for (country in countries) {
     }
     
     # get adonis stats label for this subset
-    adonis_label <- adonis_16S %>%
+    adonis_label <- adonis_16S %>% # it is important to have adonis done by this stage, otherwise won't work
       dplyr::rename("Depth_cm" = Depth) %>%
       filter(factors == "CNP_Scenario", Country == country, Depth_cm == depth, !is.na(p_values)) %>%
       mutate(across(c(p_values, r_values), round, 3),
@@ -89,3 +89,4 @@ design1 =
 # combine with patchwork
 combined_plot <- wrap_plots(plot_list_with_legend, ncol = 4, nrow = 3, design = design1) & theme(axis.text = element_blank())
 combined_plot
+
