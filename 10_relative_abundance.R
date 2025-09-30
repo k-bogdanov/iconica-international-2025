@@ -31,4 +31,5 @@ taxa_16s$data %>%
   writexl::write_xlsx(path = "/~your_name.xlsx")
 
 # repeat for ITS
-# "Phylum" can be also replaces with "Class", "Family", etc
+# "Phylum" can be also replaced with "Class", "Family", etc
+
