@@ -29,9 +29,3 @@ col7 <- "#9FC87E"
 col8 <- "#FF9898"
 col9 <- "#9B7EBD"
 col10 <- "#309898"
-
-# import phyloseq objects
-all_16s_phyloseq <- readRDS("~/iconica_all_16s_ps.rds")
-all_ITS_phyloseq <- readRDS("~/iconica_all_its_ps.rds")
-
-
