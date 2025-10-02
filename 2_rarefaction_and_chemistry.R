@@ -2,31 +2,34 @@
 all_16s_phyloseq <- readRDS("~/iconica_all_16s_ps.rds")
 all_ITS_phyloseq <- readRDS("~/iconica_all_its_ps.rds")
 
-# rerefaction and cleaning
+# rerefaction
 all_16s_phyloseq_rare <- rarefy_even_depth(all_16s_phyloseq, 12000, rngseed = TRUE)
+
+# label unidentified taxa
 all_16s_phyloseq_rare <- name_na_taxa(all_16s_phyloseq_rare, na_label = "Unknown <tax> (<rank>)")
 
+# clean (it could have been done more efficiently, yes...)
 all_16s_phyloseq_rare@sam_data$Site_Code = factor(all_16s_phyloseq_rare@sam_data$Site_Code, levels = c("JY", "LS1", "LS2", "JC1", "JC2", "LE"))
 sample_data(all_16s_phyloseq_rare)$CNP_Scenario <- factor(sample_data(all_16s_phyloseq_rare)$CNP_Scenario, levels = c("Low", "Medium", "High"))
-
-
 sample_data(all_16s_phyloseq_rare)$Country <- gsub(sample_data(all_16s_phyloseq_rare)$Country, pattern = "Denmark ", replacement = "Denmark")
 sample_data(all_16s_phyloseq_rare)$Country <- gsub(sample_data(all_16s_phyloseq_rare)$Country, pattern = "Sweden ", replacement = "Sweden")
 sample_data(all_16s_phyloseq_rare)$Country <- gsub(sample_data(all_16s_phyloseq_rare)$Country, pattern = "Ireland ", replacement = "Ireland")
 sample_data(all_16s_phyloseq_rare)$Country <- gsub(sample_data(all_16s_phyloseq_rare)$Country, pattern = "Netherlands ", replacement = "Netherlands")
 sample_data(all_16s_phyloseq_rare)$Country <- factor(sample_data(all_16s_phyloseq_rare)$Country, levels = c("Denmark", "Sweden", "Ireland", "Netherlands"))
 
+# rarefaction
 all_ITS_phyloseq_rare <- rarefy_even_depth(all_ITS_phyloseq, 5000, rngseed = TRUE)
+
+# label unidentified taxa
 all_ITS_phyloseq_rare <- name_na_taxa(all_ITS_phyloseq_rare, na_label = "Unknown <tax> (<rank>)")
+
+# clean
 all_ITS_phyloseq_rare@sam_data$Site_Code = factor(all_ITS_phyloseq_rare@sam_data$Site_Code, levels = c("JY", "LS1", "LS2", "JC1", "JC2", "LE"))
 sample_data(all_ITS_phyloseq_rare)$CNP_Scenario <- factor(sample_data(all_ITS_phyloseq_rare)$CNP_Scenario, levels = c("Low", "Medium", "High"))
-
 all_16s_phyloseq_rare@sam_data$Ca_Mehlich3_mg.kg <- as.numeric(all_16s_phyloseq_rare@sam_data$Ca_Mehlich3_mg.kg)
 all_16s_phyloseq_rare@sam_data$Soil_Organic_C_. <- as.numeric(all_16s_phyloseq_rare@sam_data$Soil_Organic_C_.)
-
 all_ITS_phyloseq_rare@sam_data$Ca_Mehlich3_mg.kg <- as.numeric(all_ITS_phyloseq_rare@sam_data$Ca_Mehlich3_mg.kg)
 all_ITS_phyloseq_rare@sam_data$Soil_Organic_C_. <- as.numeric(all_ITS_phyloseq_rare@sam_data$Soil_Organic_C_.)
-
 sample_data(all_ITS_phyloseq_rare)$Country <- gsub(sample_data(all_ITS_phyloseq_rare)$Country, pattern = "Denmark ", replacement = "Denmark")
 sample_data(all_ITS_phyloseq_rare)$Country <- gsub(sample_data(all_ITS_phyloseq_rare)$Country, pattern = "Sweden ", replacement = "Sweden")
 sample_data(all_ITS_phyloseq_rare)$Country <- gsub(sample_data(all_ITS_phyloseq_rare)$Country, pattern = "Ireland ", replacement = "Ireland")
@@ -134,3 +137,4 @@ plot_pca <- autoplot(pca_codes,
   ylim(-0.25, 0.25) 
 
 plot_pca
+
