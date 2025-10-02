@@ -1,36 +1,3 @@
-# load libraries
-library(ggplot2)
-library(wacolors)
-library(phyloseq)
-library(dplyr)
-library(microViz)
-library(ranacapa)
-library(tidyr)
-library(Rmisc)
-library(tidyverse)
-library(vegan)
-library(grid)
-library(ggrepel)
-library(ggforce)
-library(ggpubr)
-library(ggfortify)
-library(rstatix)
-library(microbiome)
-library(scales)
-library(speedyseq)
-library(phylosmith)
-library(fantaxtic)
-library(reshape2)
-library(ggsci)
-library(microbiomeutilities)
-library(ggtern)
-library(cowplot)
-library(patchwork)
-library(ggcorrplot)
-library(ggh4x)
-library(ggdendro)
-library(metagMisc)
-
 # theme
 my_theme <- theme(axis.title.y = element_text(size = 12, face = "bold", vjust = 3),
                   axis.title.x = element_text(size = 12, face = "bold", vjust = -1),
@@ -66,4 +33,5 @@ col10 <- "#309898"
 # import phyloseq objects
 all_16s_phyloseq <- readRDS("~/iconica_all_16s_ps.rds")
 all_ITS_phyloseq <- readRDS("~/iconica_all_its_ps.rds")
+
 
