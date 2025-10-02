@@ -1,3 +1,7 @@
+# import phyloseq objects
+all_16s_phyloseq <- readRDS("~/iconica_all_16s_ps.rds")
+all_ITS_phyloseq <- readRDS("~/iconica_all_its_ps.rds")
+
 # rerefaction and cleaning
 all_16s_phyloseq_rare <- rarefy_even_depth(all_16s_phyloseq, 12000, rngseed = TRUE)
 all_16s_phyloseq_rare <- name_na_taxa(all_16s_phyloseq_rare, na_label = "Unknown <tax> (<rank>)")
@@ -29,7 +33,7 @@ sample_data(all_ITS_phyloseq_rare)$Country <- gsub(sample_data(all_ITS_phyloseq_
 sample_data(all_ITS_phyloseq_rare)$Country <- gsub(sample_data(all_ITS_phyloseq_rare)$Country, pattern = "Netherlands ", replacement = "Netherlands")
 sample_data(all_ITS_phyloseq_rare)$Country <- factor(sample_data(all_ITS_phyloseq_rare)$Country, levels = c("Denmark", "Sweden", "Ireland", "Netherlands"))
 
-# creating metadata table
+# create metadata table
 iconica_all_field_metadata <- data.frame(sample_data(all_ITS_phyloseq_rare))
 
 # chemistry analysis
@@ -128,4 +132,5 @@ plot_pca <- autoplot(pca_codes,
                     show.legend = FALSE, con.type = "straight") +
   xlim(-0.25, 0.25) +
   ylim(-0.25, 0.25) 
+
 plot_pca
